@@ -670,7 +670,7 @@ body {
     <div class="page-title">🔥 占星博主热点素材库</div>
     <p style="font-size:12px;color:var(--text-light);margin-bottom:16px;">抖音 · 小红书 · 微博 近期最热话题，按热度排序，点击标签可复制灵感</p>
     <div class="hot-grid" id="hotGrid"></div>
-    <div style="font-size:11px;color:var(--text-light);text-align:right;margin-top:10px;">💡 素材定期更新 | 点击话题展开创作角度</div>
+    <div style="font-size:11px;color:var(--text-light);text-align:right;margin-top:10px;" id="astroHotDate">💡 每日自动轮换 · 素材池共30条</div>
   </section>
 
 </div>
@@ -1165,71 +1165,85 @@ const hotTopics = [
   {
     platform: '全平台',
     platformClass: 'all',
-    title: '「2026下半年大转运」哪些星座翻身？',
-    angle: '切入角度：木星入狮子座的全局影响 × 土星双鱼的社会情绪。列出转运TOP3星座+底层逻辑，结尾设投票"你觉得上半年最惨的星座是？"引发评论区站队。',
-    tags: ['木星换座','转运','互动投票','🔥爆款潜质']
+    title: '7月末→8月初 月亮交点换座！你的命运转折在哪？',
+    angle: '切入角度：月亮交点进入新的星座轴（白羊-天秤）。用对比手法——过去18个月南交点教会我们什么，未来18个月北交点在召唤什么。每个星座按上升/太阳给出具体方向和行动建议。结尾设投票「你觉得过去一年半你最大的改变是什么？」',
+    tags: ['月亮交点','命运转折','18个月周期','投票互动']
   },
   {
     platform: '抖音',
     platformClass: 'douyin',
-    title: '「这个星座一撒娇我就害怕」系列',
-    angle: '陶白白式故事化叙事：选3个星座（天蝎、摩羯、水瓶），用具体生活场景还原他们的"恐怖撒娇"。反转结尾：其实他们才是最不会表达爱的人。引发代入感和转发。',
-    tags: ['星座性格','情感共鸣','故事化','转发裂变']
+    title: '「狮子座」为什么永远学不会低调？',
+    angle: '狮子月爆款性格系列：用夸张反差剧情还原狮子座在职场/恋爱/社交中的「舞台感」。悬念结构——前半段狮子的自我中心让人想骂人，后半段反转揭示他们的忠诚和保护欲。评论区必炸。',
+    tags: ['狮子座','性格反差','反转剧情','评论区炸']
   },
   {
     platform: '小红书',
     platformClass: 'xiaohongshu',
-    title: '「星宿关系 vs 西方星座」谁更准？',
-    angle: '争议对比型：测了100对情侣，安坏关系 vs 星座配对 vs MBTI，哪个预测准确率最高？抛出真实数据+个人感受，评论区必定两极分化。',
-    tags: ['星宿关系','争议话题','数据对比','评论区炸']
+    title: '金逆+水逆的「恋爱复盘」来一波？',
+    angle: '7月水逆阴影刚散，金星还没逆但很多人已经在翻旧账。做一期「今年你为爱做过最蠢的事」收集贴，用占星视角解读为什么某些感情模式反复出现。UGC互动型——评论就是内容。',
+    tags: ['金星逆行','恋爱复盘','UGC','情感共鸣']
   },
   {
     platform: '微博',
     platformClass: 'weibo',
-    title: '「水逆到底是不是伪科学？」年度辩论',
-    angle: '7月水逆阴影期刚过，趁热度还在。正反方辩论体：前半篇列科学依据反驳水逆，后半篇讲占星角度解释水逆的真实体验。让读者自己判断，评论区交战。',
-    tags: ['水逆','科学vs玄学','辩论','热搜体质']
+    title: '「下半年破财TOP3星座」是真的还是贩卖焦虑？',
+    angle: '争议回应型：B站Up主发了「下半年破财预测」引发争议。用理性态度回应——列出原版预测、分析星象依据、指出过度解读之处。最后结论：「占星是提醒不是恐吓」。理性科普+话题争议=热搜预定。',
+    tags: ['争议回应','科普','热搜体质','理性占星']
   },
   {
     platform: '抖音',
     platformClass: 'douyin',
-    title: '「天王星7月大动作」你的星座会被怎么震？',
-    angle: '天王星在双子座的震荡效应（7.4-7.12），用夸张视觉化呈现"地震级"变化。每个星座15秒，配悬念字幕「你的星座在第几个？」引导看完。',
-    tags: ['天王星','星象热点','悬念结构','完播率']
+    title: '天王星震荡期（7月末）：你的星座被怎么「电」？',
+    angle: '视觉冲击型：天王星在双子座的活跃相位（与木星、火星互动）。快节奏剪辑+字幕特效，每个星座15秒，用「电流」「爆炸」「觉醒」视觉元素。悬念结尾「最后一个星座才是真炸」。',
+    tags: ['天王星','视觉冲击','快节奏','完播率']
   },
   {
     platform: '小红书',
     platformClass: 'xiaohongshu',
-    title: '「冥王星在9宫的人」都有什么共同特征？',
-    angle: '垂直深挖型：只讲一个宫位，讲深讲透。结合真实案例故事（匿名），引发同配置读者的强烈共鸣。结尾"如果你也冥王9宫，评论区说出你的故事。"',
-    tags: ['冥王星','宫位深挖','共鸣','UGC引爆']
+    title: '「8月木星入狮子」有哪些风向标可以参考？',
+    angle: '实操干货型：不空谈运势，直接给8月第一周可操作清单——狮子月在哪些领域发力最有效、哪些天适合启动大事、哪些天该躺平。做成精美信息图表+周计划模板，收藏率极高。',
+    tags: ['木星狮子','实操清单','干货','高收藏']
   },
   {
     platform: '全平台',
     platformClass: 'all',
-    title: '「十二星座的黑色生命力」崩溃后的重生',
-    angle: '情绪爆款：每个星座最崩溃的一次经历+如何走出来的。走共情路线而非分析路线。BGM配伤感钢琴，画面用暗调。评论区必定变成大型抱团取暖现场。',
-    tags: ['情绪价值','星座故事','共情','分享欲']
+    title: '「十二星座暗黑版人格」——你星座不为人知的一面',
+    angle: '黑化系列爆款：每个星座最阴暗、最自私、最不为人知的一面。用悬疑片氛围+BGM+第一人称内心独白。评论区变成「自首大会」——每个人主动认领自己的暗黑面，互动爆表。',
+    tags: ['暗黑星座','悬疑叙事','互动爆表','自首大会']
   },
   {
     platform: '微博',
     platformClass: 'weibo',
-    title: '「占星到底能不能信？」陶白白离婚后再引热议',
-    angle: '话题争议：占星师自己婚姻失败，还能帮人看感情吗？正方：医生也会生病。反方：自己的盘都看不准。结论：占星是地图不是预言。设投票+热评置顶。',
-    tags: ['行业争议','陶白白','信任危机','热搜预定']
+    title: '「水逆到底改变了你什么？」年度复盘征集',
+    angle: '7月水逆阴影期刚结束，趁余温还在。UGC征集帖：今年水逆（4月和7月）你经历了什么？学到了什么？用投票+精选评论置顶的方式，制造「集体共鸣」。周期总结=高转发。',
+    tags: ['水逆复盘','UGC','共鸣','高转发']
   },
 ];
 
+
+
 function renderHotTopics() {
+  const today = new Date();
+  const seed = today.getFullYear()*10000 + (today.getMonth()+1)*100 + today.getDate();
+  // Fisher-Yates shuffle with seeded random
+  const rng = (()=>{let s=seed;return ()=>{s=(s*9301+49297)%233280;return s/233280;};})();
+  const pool = [...hotTopicsPool];
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}
+  const selected = pool.slice(0,8);
+  
   const grid = document.getElementById('hotGrid');
-  grid.innerHTML = hotTopics.map(t => `
+  grid.innerHTML = selected.map(t => `
     <div class="hot-card">
-      <span class="hot-platform ${t.platformClass}">${t.platform}</span>
+      <span class="hot-platform ${t.pc}">${t.platform}</span>
       <div class="hot-title">${t.title}</div>
-      <div class="hot-angle">${t.angle}</div>
-      <div class="hot-tags">${t.tags.map(tg => `<span class="hot-tag${tg.includes('🔥')||tg.includes('热搜')?' hot-rank':''}" onclick="showToast('📋 已复制：${tg}')">${tg}</span>`).join('')}</div>
+      <div class="hot-angle">切入角度：${t.angle}</div>
+      <div class="hot-tags">${t.tags.map(tg => `<span class="hot-tag" onclick="showToast('📋 已复制：${tg}')">${tg}</span>`).join('')}</div>
     </div>
   `).join('');
+  const de=document.getElementById('astroHotDate');
+  if(de) de.textContent = today.toLocaleDateString('zh-CN',{month:'long',day:'numeric'}) + ' · 每日自动更新';
+}
+
 }
 
 // ==================== INIT ====================
